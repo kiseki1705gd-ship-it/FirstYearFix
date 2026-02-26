@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty of Science - FAQ Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/sci_atomic.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/qa.css') }}">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <a href="#" class="logo-link">
+                <img src="{{ url_for('static', filename='images/sci_atomic.png') }}" width="60" height="60" alt="Science Logo" style="margin-right: 15px;" >
+            </a>
+            <div class="header-logo-text">
+                <span class="thai">คณะวิทยาศาสตร์</span>
+                <span class="eng">Faculty of Science</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="hamburger" onclick="alert('เปิดเมนูตั้งค่า')">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="login-status" onclick="window.location.href='/'">
+                <div class="user-icon" id="userIcon">?</div>
+                <span id="userNameStatus">เข้าสู่ระบบ</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="viewPage">
+            <div class="top-bar">
+                <div class="title-text">คำถามที่พบบ่อย 🔍</div>
+                <div class="button-group">
+                    <button class="btn btn-secondary STAFF-ONLY hidden" onclick="showPage('newQuestionsPage')">จัดการคำถามใหม่</button>
+                    <button class="btn btn-main USER-ONLY hidden" onclick="showPage('editPage')">+ ถามคำถาม</button>
+                </div>
+            </div>
+            <div class="card" id="mainFaqContainer"></div>
+        </div>
+
+        <div id="newQuestionsPage" class="hidden">
+            <div class="top-bar">
+                <div class="title-text">กล่องจดหมายคำถามใหม่ 📩</div>
+                <button class="btn btn-ghost" onclick="showPage('viewPage')">กลับหน้าหลัก</button>
+            </div>
+            <div id="pendingContainer" class="card"></div>
+        </div>
+
+        <div id="editPage" class="hidden">
+            <div class="card">
+                <h3 style="margin-bottom:20px">ส่งคำถามใหม่ถึงเจ้าหน้าที่</h3>
+                <input type="text" id="askQ" class="input-field" placeholder="หัวข้อคำถาม">
+                <textarea id="askDetail" class="input-field" style="height:100px" placeholder="รายละเอียด..."></textarea>
+                <div style="display:flex; gap:10px; justify-content: flex-end;">
+                    <button class="btn btn-ghost" onclick="showPage('viewPage')">ยกเลิก</button>
+                    <button class="btn btn-main" onclick="submitQuestion()">ส่งคำถาม</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="answerModal">
+        <div class="modal-card">
+            <h3>ตอบคำถามและเผยแพร่</h3><br>
+            <p id="pendingQText" style="font-weight: 600; margin-bottom: 10px;"></p>
+            <textarea id="staffAnswerText" class="input-field" style="height:120px" placeholder="เขียนคำตอบที่นี่..."></textarea>
+            <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; cursor: pointer;">
+                <input type="checkbox" id="makePopCheckbox"> ตั้งเป็นคำถามยอดนิยมทันที
+            </label>
+            <div style="display:flex; gap:10px; justify-content: flex-end;">
+                <button class="btn btn-ghost" onclick="toggleModal('answerModal')">ปิด</button>
+                <button class="btn btn-main" onclick="publishAnswer()">บันทึกและเผยแพร่</button>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="modal-overlay" id="loginModal">
+        <div class="modal-card" style="text-align:center">
+            <h3>เข้าสู่ระบบ</h3><br>
+            <div id="loginFields">
+                <input type="text" id="uInput" class="input-field" placeholder="ชื่อผู้ใช้งาน">
+                <input type="password" id="pInput" class="input-field" placeholder="รหัสผ่าน">
+                <button class="btn btn-main" style="width:100%" onclick="handleLogin()">ยืนยัน</button>
+            </div>
+            <div id="userInfo" class="hidden">
+                <p id="userRoleText"></p><br>
+                <button class="btn btn-main" style="width:100%; background:#e53e3e" onclick="handleLogout()">ออกจากระบบ</button>
+            </div>
+            <button class="btn btn-ghost" style="margin-top:10px; width:100%" onclick="toggleModal('loginModal')">ปิด</button>
+        </div>
+    </div>-->
+
+    <script src="{{ url_for('static', filename='js/qa.js')}}"></script>
+</body>
+</html>

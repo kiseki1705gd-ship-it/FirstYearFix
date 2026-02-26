@@ -1,0 +1,156 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Prompt', sans-serif;
+ }
+
+ body {
+     background-color: #f0f2f5;
+     color: #333;
+ }
+
+ .header {
+     background-color: #002266;
+     color: white;
+     padding: 15px 40px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .logo-group {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .header-logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ .header-logo-text .thai {
+     font-size: 14px;
+     font-weight: 300;
+     display: block;
+ }
+
+ .header-logo-text .eng {
+     font-size: 22px;
+     font-weight: 500;
+     margin-top: -2px;
+ }
+
+ .hamburger {
+     font-size: 24px;
+     cursor: pointer;
+ }
+
+ .container {
+     max-width: 900px;
+     margin: 40px auto;
+     padding: 0 20px;
+ }
+
+ .top-bar {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 25px;
+ }
+
+ .btn-group {
+     display: flex;
+     gap: 10px;
+ }
+
+ /* ตกแต่งปุ่มให้กดได้เหมือนเดิม */
+ .btn {
+     background-color: #002266;
+     color: white;
+     border: none;
+     padding: 8px 20px;
+     border-radius: 20px;
+     cursor: pointer;
+     font-size: 14px;
+     font-family: 'Prompt', sans-serif;
+     transition: opacity 0.2s;
+     display: inline-block;
+     text-decoration: none;
+     /* ลบเส้นใต้ลิงก์ */
+ }
+
+ .btn:hover {
+     opacity: 0.9;
+ }
+
+ .title-text {
+     font-size: 22px;
+     font-weight: 500;
+     color: #333;
+ }
+
+ .card {
+     background: white;
+     border-radius: 12px;
+     padding: 40px;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+     margin-bottom: 25px;
+ }
+
+ .section-title {
+     display: flex;
+     align-items: center;
+     margin-bottom: 20px;
+ }
+
+ .yellow-marker {
+     width: 5px;
+     height: 24px;
+     background-color: #ffcc00;
+     margin-right: 12px;
+ }
+
+ .section-label {
+     font-size: 18px;
+     font-weight: 600;
+     color: #333;
+ }
+
+ .info-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 30px;
+     margin-left: 17px;
+ }
+
+ .info-group label {
+     font-size: 14px;
+     font-weight: 500;
+     color: #555;
+     margin-bottom: 8px;
+     display: block;
+ }
+
+ .info-group p {
+     font-size: 16px;
+     color: #333;
+ }
+
+ @media (max-width: 768px) {
+     .header {
+         padding: 15px 20px;
+     }
+
+     .top-bar {
+         flex-direction: column-reverse;
+         align-items: flex-start;
+         gap: 20px;
+     }
+
+     .info-grid {
+         grid-template-columns: 1fr;
+     }
+ }

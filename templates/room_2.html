@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty of Science - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/sci_atomic.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/room02.css') }}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo-group">
+            <img src="{{ url_for('static', filename='images/sci_atomic.png') }}" alt="Logo" width="55">
+            <div class="header-logo-text">
+                <span class="thai">คณะวิทยาศาสตร์</span>
+                <span class="eng">Faculty of Science</span>
+            </div>
+        </div>
+
+        <div class="hamburger">≡</div>
+    </header>
+
+    <main class="container">
+
+        <div class="top-bar">
+            <div class="btn-group">
+                <a href="room_01.html" class="btn">แก้ไขข้อมูล</a>
+                <a href="room_01.html" class="btn">เพิ่มข้อมูล</a>
+            </div>
+            <div class="title-text">ข้อมูลสถานที่และอุปกรณ์</div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <div class="yellow-marker"></div>
+                <div class="section-label">สถานที่</div>
+            </div>
+            <div class="info-grid">
+                <div class="info-group">
+                    <label>เลขห้อง</label>
+                    <p>SC 999</p>
+                </div>
+                <div class="info-group">
+                    <label>ช่องทางการติดต่อผู้รับผิดชอบ</label>
+                    <p>090-000-0000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">
+                <div class="yellow-marker"></div>
+                <div class="section-label">อุปกรณ์</div>
+            </div>
+            <div class="info-grid">
+                <div class="info-group">
+                    <label>ประเภทอุปกรณ์</label>
+                    <p>โปรเจคเตอร์</p>
+                </div>
+                <div class="info-group">
+                    <label>ช่องทางการติดต่อขอยืมอุปกรณ์</label>
+                    <p>090-000-0000</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

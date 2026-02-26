@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty of Science - Data Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/sci_atomic.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/room01.css') }}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <a href="#" class="logo-link">
+                <img src="{{ url_for('static', filename='images/sci_atomic.png') }}" width="55" alt="Science Logo"
+                    style="margin-right: 10px;">
+            </a>
+            <div class="header-logo-text">
+                <span class="thai">คณะวิทยาศาสตร์</span>
+                <span class="eng">Faculty of Science</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div style="font-size: 24px; cursor: pointer;">≡</div>
+            <div class="login-status" onclick="window.location.href='/'">
+                <div class="user-icon" id="userIcon">?</div>
+                <span id="userNameStatus">เข้าสู่ระบบ</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-card">
+            <h3 id="modalTitle">เข้าสู่ระบบ</h3>
+            <div id="loginForm">
+                <input type="text" id="usernameInput" class="input-field" placeholder="ชื่อผู้ใช้งาน">
+                <input type="password" id="passwordInput" class="input-field" placeholder="รหัสผ่าน">
+                <button class="btn" style="width: 100%; margin-top: 10px;" onclick="handleLogin()">ยืนยัน</button>
+            </div>
+            <button class="btn" style="background: none; color: #888; margin-top: 10px;"
+                onclick="toggleLoginModal()">ปิดหน้าต่าง</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <div id="viewSection">
+            <div class="top-bar">
+                <div class="title-text">ขอใช้สถานที่และอุปกรณ์ 📋</div>
+                <div class="search-group">
+                    <input type="text" id="searchInput" class="search-input" placeholder="ค้นหา..."
+                        oninput="renderItems()">
+                    <button class="btn STAFF-ONLY hidden" onclick="showAddForm()">+ เพิ่มข้อมูล</button>
+                </div>
+            </div>
+            <div id="dataContainer"></div>
+            <div id="emptyState" class="hidden" style="text-align: center; color: #aaa; padding: 50px;">ไม่พบข้อมูล
+            </div>
+        </div>
+
+        <div id="editSection" class="hidden">
+            <div class="top-bar">
+                <div class="title-text">เพิ่มข้อมูลใหม่</div>
+            </div>
+            <div class="card">
+                <div class="mode-selector">
+                    <button id="modeRoom" class="mode-btn active"
+                        onclick="switchEntryMode('room')">เพิ่มสถานที่</button>
+                    <button id="modeTool" class="mode-btn" onclick="switchEntryMode('tool')">เพิ่มอุปกรณ์</button>
+                </div>
+                <div id="roomFields">
+                    <input type="text" id="editRoomNum" class="input-field" placeholder="เลขห้อง (เช่น SC131)">
+                    <input type="text" id="editRoomContact" class="input-field" placeholder="ติดต่อผู้รับผิดชอบ">
+                </div>
+                <div id="toolFields" class="hidden">
+                    <input type="text" id="editToolType" class="input-field" placeholder="ประเภทอุปกรณ์">
+                    <input type="text" id="editToolContact" class="input-field" placeholder="ติดต่อขอยืม">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px;">
+                    <button class="btn" style="background: #6c757d;" onclick="hideAddForm()">ยกเลิก</button>
+                    <button class="btn" style="background: #28a745;" onclick="saveNewData()">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/room01.js') }}"></script>
+</body>
+
+</html>
