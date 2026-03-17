@@ -13,29 +13,13 @@ function toggleFaq(el, code) {
     if (!card) return;
 
     const answer = card.querySelector(".answer-box");
-    if (!answer) {
-        console.warn("❌ ไม่พบ .answer-box");
-        return;
-    }
+    if (!answer) return;
 
     const icon = el.querySelector(".toggle-icon");
-
     const isOpening = !answer.classList.contains("active");
 
-    console.log("isOpening:", isOpening); // 👀 debug
-
-    // ปิดทั้งหมด
-    document.querySelectorAll(".answer-box").forEach(a => {
-        a.classList.remove("active");
-    });
-
-    document.querySelectorAll(".toggle-icon").forEach(i => {
-        i.classList.remove("bi-chevron-up");
-        i.classList.add("bi-chevron-down");
-    });
-
-    // เปิดอันที่กด
     if (isOpening) {
+        // เปิด
         answer.classList.add("active");
 
         if (icon) {
@@ -47,6 +31,15 @@ function toggleFaq(el, code) {
         if (!card.dataset.viewed) {
             addView(code);
             card.dataset.viewed = "true";
+        }
+
+    } else {
+        // ปิดเฉพาะอันนี้
+        answer.classList.remove("active");
+
+        if (icon) {
+            icon.classList.remove("bi-chevron-up");
+            icon.classList.add("bi-chevron-down");
         }
     }
 }
@@ -155,4 +148,27 @@ window.addEventListener("load", function () {
     if (scrollY !== null) {
         window.scrollTo(0, parseInt(scrollY));
     }
+});
+
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    const keyword = this.value.toLowerCase();
+
+    const cards = document.querySelectorAll(".faq-card");
+    const noResult = document.getElementById("noResult");
+
+    let found = false;
+
+    cards.forEach(card => {
+        const q = card.dataset.question;
+        const a = card.dataset.answer;
+
+        if (q.includes(keyword) || a.includes(keyword)) {
+            card.style.display = "";
+            found = true;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    noResult.style.display = found ? "none" : "block";
 });

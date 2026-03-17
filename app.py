@@ -19,7 +19,7 @@ app.secret_key = "dev_secret_key"
 db_path = os.path.join(app.instance_path, "resources.db")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///qa.db"
+app.config["SQLALCHEMY_BINDS"] = {"qa": "sqlite:///qa.db"}
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
@@ -40,7 +40,6 @@ register_resources_routes(app)
 # Mock Login (สำหรับทดสอบ)
 @app.route("/test-login-club")
 def test_login_club():
-    # จำลองการจำค่าลง session ว่าเป็นสโมสรนักศึกษา
     session["role"] = "club"
     session["student_id"] = "สโมสรนักศึกษาทดสอบ"
     return redirect(url_for("manage_resources"))
