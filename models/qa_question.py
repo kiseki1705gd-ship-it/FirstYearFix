@@ -5,6 +5,7 @@ import string
 
 
 class Question(db.Model):
+    __bind_key__ = "qa"
     __tablename__ = "qa_questions"
 
     id = db.Column(db.Integer, primary_key=True)

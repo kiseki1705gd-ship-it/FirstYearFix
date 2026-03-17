@@ -114,20 +114,30 @@
     <main class="container">
         <div id="viewPage">
 
-            <div class="top-bar">
+            <div class="top-bar d-flex justify-content-between align-items-center flex-wrap gap-2">
+
                 <div class="title-text">
                     ตอบคำถามที่พบบ่อย <i class="bi bi-question-circle-fill text-primary"></i>
                 </div>
 
-                <div class="d-flex justify-content-end mb-3">
+                <div class="d-flex gap-2">
+
+                    <!-- Search -->
+                    <input type="text" id="searchInput" class="form-control" placeholder="ค้นหาคำถาม..."
+                        style="width:250px; border-radius: 18px">
+
+                    <!-- Add -->
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
                         <i class="bi bi-plus-lg"></i> เพิ่มคำถาม
                     </button>
+
                 </div>
+
             </div>
 
             {% for q in questions %}
-            <div class="card faq-card mb-3 shadow-sm">
+            <div class="card faq-card mb-3 shadow-sm" data-question="{{ q.question|lower }}"
+                data-answer="{{ (q.answer or '')|lower }}">
                 <div class="card-body">
 
                     <!-- HEADER -->
@@ -141,7 +151,7 @@
 
                             <div>
                                 <div class="question-text fw-semibold">
-                                    {{ q.question }}
+                                    คำถาม: {{ q.question }}
 
                                     {% if q.is_faq %}
                                     <span class="badge bg-success ms-2 popular-badge">
@@ -186,8 +196,7 @@
                             {% if q.answer and q.answer|trim %}
 
                             <div class="answer-text mb-2">
-                                <i class="bi bi-chat-left-text text-primary me-1"></i>
-                                {{ q.answer | safe }}
+                                คำตอบ: {{ q.answer | safe }}
                             </div>
 
                             <!-- เวลา (ตอบ) -->
@@ -245,6 +254,10 @@
             </div>
             {% endfor %}
 
+            <div id="noResult" class="text-center text-muted mt-4" style="display:none;">
+                <i class="bi bi-search"></i> ไม่พบคำถามที่ค้นหา
+            </div>
+
         </div>
     </main>
 
@@ -264,11 +277,6 @@
                             <label class="form-label">หัวข้อคำถาม</label>
                             <input type="text" name="title" class="form-control" required>
                         </div>
-
-                        <!--<div class="mb-3">
-                            <label class="form-label">รายละเอียด</label>
-                            <textarea name="detail" class="form-control" rows="4"></textarea>
-                        </div>-->
                     </div>
 
                     <div class="modal-footer">
